@@ -9,9 +9,18 @@
         <script src="index.js" defer></script>
     </head>
     <body>
-            <h1>Typing game with Sherlock Holmes</h1>
+            <h1>Typing game </h1>
             <p id="quote"></p>
             <p id="message"></p>
+            <div>
+                <input list="difficulty-options" id="difficulty" name="difficulty" placeholder="Choose difficulty">
+                <datalist id="difficulty-options">
+                    <option value="Easy">
+                    <option value="Medium">
+                    <option value="Hard">
+                    <option value="Expert">
+                </datalist>
+            </div>
         <div>
             <input type="text" id="typed-value" placeholder="Start typing...">
             <button id="start-button">Start</button>

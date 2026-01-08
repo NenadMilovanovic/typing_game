@@ -1,12 +1,32 @@
-const arr_of_qoutes = [
-    'When you have eliminated the impossible, whatever remains, however improbable, must be the truth.',
-    'There is nothing more deceptive than an obvious fact.',
-    'I ought to know by this time that when a fact appears to be opposed to a long train of deductions it invariably proves to be capable of bearing some other interpretation.',
-    'I never make exceptions. An exception disproves the rule.',
-    'What one man can invent another can discover.',
-    'Nothing clears up a case so much as stating it to another person.',
-    'Education never ends, Watson. It is a series of lessons, with the greatest for the last.', 
+const arr_of_qoutes_easy_level = [
+   'The small cat runs quickly across the yard.' ,
+   'I enjoy learning how to type faster every day.' , 
+    'She reads books and practices typing after school.' ,
+    'We play typing games together on the computer.' , 
+    'The bright sun shines warmly over the quiet town.' , 
 ]
+const arr_of_qoutes_medium_level = [
+    'I enjoy playing online games that challenge my typing speed.' ,
+    'She types more accurately when she stays calm and focused.' ,
+    'We practice typing every evening to improve our performance.' ,
+    'The dog sleeps quietly near the door while we work.' ,
+    'He bought a mechanical keyboard because it feels more responsive.', 
+];
+const arr_of_qoutes_hard_level = [
+    'While learning to type efficiently, accuracy should always come before speed.' ,
+    'The player finished the level quickly, but several errors reduced the final score.' ,
+    'If you practice consistently, your typing skills will improve much faster.' ,
+    'The keyboard felt comfortable, even after several hours of continuous use.' ,
+    'She focused intensely, carefully watching each word appear on the screen.' ,
+];
+const arr_of_qoutes_expert_level = [ 
+    'Despite typing at over 100 words per minute, he still struggled to remain accurate under pressure.' ,
+    'The message on the screen warned, "Stay focused, type carefully, and never rush the timer." ',
+    'After 4 hours of nonstop typing practice, his hands felt stiff, sore, and exhausted.' ,
+    'When the timer hit 00:00 exactly, she realized she had mistyped only two characters.' ,
+    'Debugging complex code demands precision, patience, and unwavering attention to detail.' ,
+];
+
 let words = [];
 let wordindex = 0;
 let startTime = Date.now();
@@ -15,8 +35,8 @@ const messageElement = document.getElementById('message');
 const typedValueElement = document.getElementById('typed-value');
 
 document.getElementById('start-button').addEventListener('click', function () {
-    const quoteIndex = Math.floor(Math.random() * arr_of_qoutes.length);
-    const qoute = arr_of_qoutes[quoteIndex];
+    const quoteIndex = Math.floor(Math.random() * arr_of_qoutes_easy_level.length);
+    const qoute = arr_of_qoutes_easy_level[quoteIndex];
     words = qoute.split(' ');
     wordindex = 0;
 
@@ -52,4 +72,11 @@ typedValueElement.addEventListener('input', function () {
 }
 });
 
-  
+const difficultyInput = document.getElementById('difficulty');
+  // Also allow clearing by double-click
+  difficultyInput.addEventListener('dblclick', () => {
+    difficultyInput.value = '';
+    difficultyInput.focus();
+  });
+
+
