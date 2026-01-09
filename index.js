@@ -74,6 +74,18 @@ document.getElementById('start-button').addEventListener('click', function () {
 
   startTime = new Date().getTime();
 });
+let numberOfErrors = 0;
+let totalCharactersTyped = 0;
+
+typedValueElement.addEventListener('input', function (){
+  const currentWord = words[wordindex];
+  totalCharactersTyped++;
+
+  if (!currentWord.startsWith(typedValueElement.value)) {
+    numberOfErrors++;
+  }
+  
+});
 typedValueElement.addEventListener('input', function () {
     const currentWord = words[wordindex];
     const typedValue = typedValueElement.value;
@@ -82,6 +94,10 @@ typedValueElement.addEventListener('input', function () {
         const elapsedTime = new Date().getTime() - startTime;
         const message = `Congratulations! You finished in ${elapsedTime / 1000} seconds.`;
         messageElement.innerText = message;
+        const accuracy = ((totalCharactersTyped - numberOfErrors) / totalCharactersTyped) * 100;
+        document.getElementById('accuracy').innerText = `Accuracy: ${accuracy.toFixed(2)}%`;
+        const wpm = (totalCharactersTyped / 5) / (elapsedTime / 60000);
+        document.getElementById('wpm').innerText = `WPM: ${wpm.toFixed(2)}`;
     }else if (typedValue.endsWith(' ') && typedValue.trim() === currentWord) {
         typedValueElement.value = '';
         wordindex++;
@@ -95,6 +111,7 @@ typedValueElement.addEventListener('input', function () {
     typedValueElement.className = 'error';
 }
 });
+;
 
 
 
