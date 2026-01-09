@@ -1,10 +1,26 @@
+const difficultyInput = document.getElementById('difficulty');
+  // Also allow clearing by double-click
+  difficultyInput.addEventListener('dblclick', () => {
+    difficultyInput.value = '';
+    difficultyInput.focus();
+  });
+document.getElementById('game-container').style.display = 'none';
+
+  difficultyInput.addEventListener('change', () => {
+    const difficulty = difficultyInput.value;
+    if (['Easy', 'Medium', 'Hard', 'Expert'].includes(difficulty)) {
+      document.getElementById('game-container').style.display = 'block';
+      document.getElementById('difficulty').style.display = 'none';
+    }
+});
+
 const arr_of_qoutes_easy_level = [
    'The small cat runs quickly across the yard.' ,
    'I enjoy learning how to type faster every day.' , 
     'She reads books and practices typing after school.' ,
     'We play typing games together on the computer.' , 
     'The bright sun shines warmly over the quiet town.' , 
-]
+];
 const arr_of_qoutes_medium_level = [
     'I enjoy playing online games that challenge my typing speed.' ,
     'She types more accurately when she stays calm and focused.' ,
@@ -35,8 +51,16 @@ const messageElement = document.getElementById('message');
 const typedValueElement = document.getElementById('typed-value');
 
 document.getElementById('start-button').addEventListener('click', function () {
-    const quoteIndex = Math.floor(Math.random() * arr_of_qoutes_easy_level.length);
-    const qoute = arr_of_qoutes_easy_level[quoteIndex];
+    const difficulty = difficultyInput.value;
+    let quoteArray;
+    
+    if (difficulty === 'Easy') quoteArray = arr_of_qoutes_easy_level;
+    else if (difficulty === 'Medium') quoteArray = arr_of_qoutes_medium_level;
+    else if (difficulty === 'Hard') quoteArray = arr_of_qoutes_hard_level;
+    else if (difficulty === 'Expert') quoteArray = arr_of_qoutes_expert_level;
+    
+    const quoteIndex = Math.floor(Math.random() * quoteArray.length);
+    const qoute = quoteArray[quoteIndex];
     words = qoute.split(' ');
     wordindex = 0;
 
@@ -72,11 +96,6 @@ typedValueElement.addEventListener('input', function () {
 }
 });
 
-const difficultyInput = document.getElementById('difficulty');
-  // Also allow clearing by double-click
-  difficultyInput.addEventListener('dblclick', () => {
-    difficultyInput.value = '';
-    difficultyInput.focus();
-  });
+
 
 
